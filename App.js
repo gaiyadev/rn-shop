@@ -1,8 +1,12 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import "react-native-gesture-handler";
+import * as React from "react";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import productReducer from "./redux/store/reducers/products";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
+
+import ShopNavigation from "./navigation/routes";
 
 const rootReducer = combineReducers({
   products: productReducer,
@@ -10,15 +14,17 @@ const rootReducer = combineReducers({
 const store = createStore(rootReducer);
 
 export default function App() {
+  const [loaded] = useFonts({
+    OpenSansBold: require("./assets/fonts/OpenSans-Bold.ttf"),
+    OpenSansRegular: require("./assets/fonts/OpenSans-Regular.ttf"),
+  });
+
+  if (!loaded) {
+    return <AppLoading />;
+  }
   return (
     <Provider store={store}>
-      <View>
-        <Text>d</Text>
-      </View>
+      <ShopNavigation />
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {},
-});

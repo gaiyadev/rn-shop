@@ -4,6 +4,7 @@ import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import productReducer from "./redux/store/reducers/products";
 import cartReducer from "./redux/store/reducers/cart";
+import orderReducer from "./redux/store/reducers/orders";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
@@ -12,6 +13,7 @@ import ShopNavigation from "./navigation/routes";
 const rootReducer = combineReducers({
   products: productReducer,
   cart: cartReducer,
+  orders: orderReducer,
 });
 const store = createStore(rootReducer);
 
